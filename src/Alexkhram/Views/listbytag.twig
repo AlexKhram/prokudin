@@ -1,0 +1,48 @@
+{{ include('layout/head.twig') }}
+
+<body>
+
+{{ include('layout/head_menu.twig') }}
+
+<main class="mdl-layout__content">
+    <div class="page-content">
+        <div class="content-grid mdl-grid">
+            <div class="mdl-card mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-shadow--2dp">
+                <div class="mdl-card__title">
+                    {{ 'listPhotosWithTag'|trans }} : {{ tag }}
+                </div>
+                <div class="mdl-card__supporting-text">
+
+                    {% if cards %}
+                        <ul class=" mdl-list">
+                            {% set count = 0 %}
+                            {% for card in cards %}
+                                <li class="mdl-list__item">
+                                 <span class="mdl-list__item-primary-content">
+                                     <a href="{{ path('photo', {name: card["name_search"]}) }}" id="tooltip{{ count }}"> <i
+                                                 class="material-icons mdl-list__item-icon {{ app['accentTextColour'] }}">image</i></a>
+                                    <a href="{{ path('photo', {name: card["name_search"]}) }}"
+                                       id="tooltip{{ count  + 1 }}" class="{{ app['accentTextColour'] }}"> {{ card ["name"] }}</a>
+                                     <span for="tooltip{{ count }}" class="mdl-tooltip {{ app['mainColour'] }} mdl-tooltip--right">
+                            <img src="{{ card["path_image"] }}" alt="" class="alignnone size-full wp-image-8295 img-preview"/>
+                                     </span>
+                                     {% set count = count + 2 %}
+                                 </span>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        {{ 'notPhotoWithTag'|trans }}
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ include('layout/footer.twig') }}
+
+</main>
+</body>
+</html>
+
+

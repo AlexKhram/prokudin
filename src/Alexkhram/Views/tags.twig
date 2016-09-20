@@ -1,0 +1,38 @@
+{{ include('layout/head.twig') }}
+
+<body>
+
+{{ include('layout/head_menu.twig') }}
+
+<main class="mdl-layout__content">
+    <div class="page-content">
+
+        <div class="content-grid mdl-grid">
+            <div class="mdl-card mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-shadow--2dp">
+                <div class="mdl-card__title">
+                    {{ 'listOfTags'|trans }}
+                </div>
+                <div class="mdl-card__supporting-text">
+
+                    {% if tags %}
+                        {% for tag in tags %}
+                            <span class="mdl-chip mdl-chip--contact">
+                                <a href="{{ path('listbytag', {tagName: tag['tag']}) }}">
+                                    <span class="mdl-chip__contact {{ app['accentColour'] }} mdl-color-text--white">{{ tag['count'] }}</span>
+                                    <span class="mdl-chip__text {{ app['accentTextColour'] }}"> {{ tag['tag'] }}</span>
+
+                                </a>
+                            </span>
+                        {% endfor %}
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{ include('layout/footer.twig') }}
+
+</main>
+</body>
+</html>

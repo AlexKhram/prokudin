@@ -1,0 +1,100 @@
+{{ include('layout/head.twig') }}
+
+<body>
+
+{{ include('layout/head_menu.twig') }}
+
+<main class="mdl-layout__content">
+    <div class="page-content">
+        <div class="content-grid mdl-grid">
+            <div class="mdl-card mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-shadow--2dp">
+                <div class="mdl-card__media mdl-color--white">
+                    <div id="map-primary"></div>
+                    <script>
+                        function initMap() {
+                            // Specify features and elements to define styles.
+                            var styleArray = [
+                                {
+                                    featureType: "all",
+                                    stylers: [
+                                        {hue: '#FFA500'},
+                                        {saturation: 50}
+
+                                    ]
+                                }, {
+                                    featureType: "road.arterial",
+                                    elementType: "geometry",
+                                    stylers: [
+                                        {hue: "#FF8C00"},
+                                        {saturation: 100}
+                                    ]
+                                }, {
+                                    featureType: "poi.business",
+                                    elementType: "labels",
+                                    stylers: [
+                                        {visibility: "off"}
+                                    ]
+                                }
+                            ];
+
+                            var myLatLng = {lat: 40.363, lng: 65.044};
+                            // Create a map object and specify the DOM element for display.
+                            var map = new google.maps.Map(document.getElementById('map-primary'), {
+                                center: myLatLng,
+                                scrollwheel: false,
+                                // Apply the map style array to the map.
+                                styles: styleArray,
+                                zoom: 3,
+                                disableDefaultUI: true
+                            });
+                            {% set count = 0 %}
+                            {% for photo in content %}
+
+                            var contentString{{ count }} = '<div class="mdl-card">' +
+                                    '<div class="mdl-card__media mdl-color--white">' +
+                                    '<a href="{{ path("photo", {name: photo["name_search"]}) }}"><img class="center fullwidth"' +
+                                    'src="{{ photo["path_image"] }}"' +
+                                    'alt=""/></a>' +
+                                    '</div>' +
+                                    '<div class="mdl-card__title">' +
+                                    '{{ photo ["name"] }}' +
+                                    '</div>' +
+                                    '<div class="mdl-card__supporting-text">' +
+                                    '{{ photo ["description"] }}' +
+                                    ' </div>' +
+                                    '</div>';
+                            var infowindow{{ count }} = new google.maps.InfoWindow({
+                                content: contentString{{ count }}
+                            });
+
+                            var marker{{ count }} = new google.maps.Marker({
+                                map: map,
+                                position: { {{ photo["geo"] }} },
+                                title: "{{ photo["name"] }}"
+                            });
+                            marker{{ count }}.addListener('click', function () {
+                                infowindow{{ count }}.open(map, marker{{ count }});
+                            });
+                            {% set count = count + 1 %}
+                            {% endfor %}
+
+                        }
+                    </script>
+                </div>
+                <div class="mdl-card__title">
+                    {{ 'photoLocation'|trans }}
+                </div>
+            </div>
+        </div>
+
+    </div>
+    {{ include('layout/footer.twig') }}
+
+</main>
+</body>
+<!-- Google map api -->
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDzg2kplesRfCCdrBsvNjbldgH-sj-1Qg&callback=initMap"
+></script>
+</html>
+

@@ -1,0 +1,52 @@
+<!doctype html>
+
+<html lang="{{ app['locale'] }}">
+
+<head>
+    <meta charset="utf-8">
+
+    <meta name="description" content="Prokudin">
+    <meta name="author" content="AlexKhram">
+    <title>{{ 'siteName'|trans }}</title>
+    {#<link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.amber-orange.min.css" />#}
+    <link rel="stylesheet" href="/styles/material.amber-orange.min.css" />
+    <link rel="stylesheet" href="/styles/prokudin.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script defer src="/js/material.min.js"></script>
+    {#<script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>#}
+
+    <!-- ReCaptcha-->
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+</head>
+<div class="mdl-snackbar mdl-js-snackbar">
+    <div class="mdl-snackbar__text"></div>
+    <button type="button" class="mdl-snackbar__action"></button>
+</div>
+{% if message is defined and message is not empty%}
+<script>
+    var notification = document.querySelector('.mdl-js-snackbar');
+
+    r(function () {
+        notification.MaterialSnackbar.showSnackbar({
+            message: {% if message['success'] is defined %}
+                    '{{ message['success']|trans }}',
+            {% elseif message['error'] is defined %}
+            '{% for error in message['error'] %}
+            {{ error|trans }}{% if not loop.last %}, {% endif %}{% if loop.last %}',{% endif %}
+                    {% endfor %}
+                    {% endif %}
+            actionHandler: function () {
+            notification.style.opacity = 0;
+        },
+        actionText: 'X',
+                timeout: 25000
+    });
+    });
+    function r(f) {
+        /in/.test(document.readyState) ? setTimeout('r(' + f + ')', 9) : f()
+    }
+
+</script>
+{% endif %}
+
+

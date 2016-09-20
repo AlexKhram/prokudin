@@ -1,0 +1,51 @@
+{{ include('layout/head.twig') }}
+
+<body>
+
+{{ include('layout/head_menu.twig') }}
+
+<main class="mdl-layout__content">
+    <div class="page-content">
+
+    <div class=" content-grid mdl-grid">
+    <div class="mdl-layout-spacer"></div>
+    <div class="mdl-cell mdl-cell--10-col mdl-cell--7-col-tablet mdl-cell--3-col-phone">
+
+            {% if cards %}
+                <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp fullwidth">
+                    <thead>
+                    <tr>
+                        <th class="mdl-data-table__cell--non-numeric full-width">{{ 'photo'|trans }}</th>
+                        <th>{{ 'views'|trans }}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% set count = 0 %}
+                    {% for card in cards %}
+                    <tr>
+                        <td class="mdl-data-table__cell--non-numeric">
+                            <a class="{{ app['accentTextColour'] }}" href="{{ path('photo', {name: card["name_search"]}) }}" id="tooltip{{ count }}">
+                                {{ card ["name"] }}
+                            </a>
+                            <span for="tooltip{{ count }}" class="mdl-tooltip {{ app['mainColour']  }}">
+                                <img src="{{ card["path_image"] }}" alt="" class="alignnone size-full wp-image-8295 img-preview" />
+                            </span>
+                            {% set count = count + 1 %}
+                        </td>
+                        <td>{{ card ["views"] }}</td>
+                    </tr>
+                    </tbody>
+                    {% endfor %}
+                </table>
+            {% endif %}
+
+    </div>
+    <div class="mdl-layout-spacer"></div>
+</div>
+
+    </div>
+    {{ include('layout/footer.twig') }}
+
+</main>
+</body>
+</html>

@@ -1,0 +1,177 @@
+{{ include('layout/head.twig') }}
+
+<body>
+
+{{ include('layout/head_menu.twig') }}
+
+<main class="mdl-layout__content">
+    <div class="page-content">
+        <div class="content-grid mdl-grid">
+            <div class="content-grid mdl-grid">
+
+                {% if card == false %}
+                    <div class="mdl-card mdl-cell  mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-shadow--2dp">
+                        <div class="mdl-card__supporting-text">
+                            {{ 'photoNotFound'|trans }}
+                        </div>
+                    </div>
+
+                {% else %}
+                    <div class="mdl-card card-witdth-900-centered mdl-cell  mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-shadow--2dp">
+                        <div class="mdl-card__media mdl-color--white">
+                            <img class="center img_fullwidth" src="{{ card["path_hirez"] }}" alt=""/>
+                        </div>
+                        <div class="mdl-card__title">
+                            {{ card ["name"] }}
+                        </div>
+                        <div class="mdl-card__supporting-text">
+                            {{ card ["description"] }}
+                        </div>
+
+                        {% if card['tags'] %}
+                            <div class="mdl-card__actions mdl-card--border">
+                                {% for tag in card['tags'] %}
+                                    <a href="{{ path('listbytag', {tagName: tag}) }}">
+                        <span class="mdl-chip {{ app['accentColour'] }}  mdl-color-text--white">
+
+                            <span class="mdl-chip__text">{{ tag }}</span>
+
+                        </span>
+                                    </a>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+                    </div>
+                    <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone"></div>
+
+                    {% if card["geo"] %}
+                        <div class="mdl-card card-witdth-900-centered mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-shadow--2dp">
+                            <div class="mdl-card__media mdl-color--white">
+                                <div id="map"></div>
+                                <script>
+                                    function initMap() {
+                                        // Specify features and elements to define styles.
+                                        var styleArray = [
+                                            {
+                                                featureType: "all",
+                                                stylers: [
+                                                    {hue: '#FFA500'},
+                                                    {saturation: 50}
+
+                                                ]
+                                            }, {
+                                                featureType: "road.arterial",
+                                                elementType: "geometry",
+                                                stylers: [
+                                                    {hue: "#FF8C00"},
+                                                    {saturation: 100}
+                                                ]
+                                            }, {
+                                                featureType: "poi.business",
+                                                elementType: "labels",
+                                                stylers: [
+                                                    {visibility: "off"}
+                                                ]
+                                            }
+                                        ];
+                                        var myLatLng = { {{ card["geo"] }} };
+                                        // Create a map object and specify the DOM element for display.
+                                        var map = new google.maps.Map(document.getElementById('map'), {
+                                            center: myLatLng,
+                                            scrollwheel: false,
+                                            // Apply the map style array to the map.
+                                            styles: styleArray,
+                                            zoom: 6,
+                                            disableDefaultUI: true
+                                        });
+                                        var marker = new google.maps.Marker({
+                                            map: map,
+                                            position: myLatLng
+                                        });
+                                    }
+                                </script>
+                            </div>
+                            <div class="mdl-card__title">
+                                {{ 'photoLocation'|trans }}
+                            </div>
+                        </div>
+                    {% endif %}
+
+                    <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone"></div>
+                    <div class="mdl-card card-witdth-900-centered mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-shadow--2dp">
+                        <div class="mdl-card__supporting-text">
+                            <form id="comment" method="post" action="{{ path('photo', {name: card["name_search"]}) }}">
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input class="mdl-textfield__input" type="text" id="username" name="username"
+                                           pattern="[A-Z,a-z, ]*"/>
+                                    <label class="mdl-textfield__label" for="username">{{ 'name'|trans }}</label>
+                                    <span class="mdl-textfield__error">{{ 'lettersSpaces'|trans }}</span>
+                                </div>
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input class="mdl-textfield__input" type="email" id="email" name="email"/>
+                                    <label class="mdl-textfield__label"
+                                           for="email">{{ 'emailNotPublished'|trans }}</label>
+                                    <span class="mdl-textfield__error">{{ 'realEmail'|trans }}</span>
+                                </div>
+                                <div class="mdl-textfield mdl-js-textfield fullwidth">
+                                <textarea class="mdl-textfield__input" type="text" rows="3" maxrows="3" id="comment"
+                                          name="comment"></textarea>
+                                    <label class="mdl-textfield__label" for="comment">{{ 'comment'|trans }}</label>
+                                </div>
+                                <input type="hidden" name="idphoto" value="{{ card["id"] }}"/>
+                                <div class="g-recaptcha" data-sitekey="6LdOBQcUAAAAAPYSDj7XmFcR4AvfvksVaHCWilus"
+                                     data-callback="enableBtn"></div>
+                            </form>
+                        </div>
+                        <div class="mdl-card__actions ">
+                            <button type="submit" form="comment" id="buttonSubmit" disabled
+                                    class="mdl-button mdl-button--colored  mdl-js-button mdl-js-ripple-effect">{{ 'sendComment'|trans }}</button>
+                        </div>
+                    </div>
+
+                    {% if comments %}
+                        {% for comment in comments %}
+                            <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone"></div>
+                            <div class="mdl-card card-witdth-900-centered mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-shadow--2dp">
+                                <div class="mdl-card__title">
+                                    <img alt=""
+                                         src="http://1.gravatar.com/avatar/{{ comment['hash'] }}?s=200&amp;d=mm&amp;r=g"
+                                         class="circle-avatar">
+                                    <ul class="demo-list-two mdl-list">
+                                        <li class="mdl-list__item mdl-list__item--two-line">
+                                  <span class="mdl-list__item-primary-content">
+                                      <span>{{ comment["name"] }}</span>
+                                      <span class="mdl-list__item-sub-title">{{ comment["date"] }}</span>
+                                  </span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="mdl-card__supporting-text">
+                                    {{ comment["comment"] }}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
+                {% endif %}
+
+            </div>
+        </div>
+
+        {{ include('layout/footer.twig') }}
+
+</main>
+</body>
+<script>
+    function enableBtn() {
+        document.getElementById("buttonSubmit").disabled = false;
+    }
+</script>
+
+<!-- Google map api -->
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDzg2kplesRfCCdrBsvNjbldgH-sj-1Qg&callback=initMap"
+></script>
+</html>
+
