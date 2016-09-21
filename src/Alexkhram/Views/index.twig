@@ -15,19 +15,20 @@
                                                                                              src="{{ photo["path_image"] }}"
                                                                                              alt=""/></a>
                         </div>
-                        <div class="mdl-card__title">
-                            {{ photo ["name"] }}
-                        </div>
-                        <div class="mdl-card__supporting-text">
-                            {{ photo ["description"] }}
-                        </div>
+                        {#<div class="mdl-card__title">#}
+                            {#{{ photo ["name"] }}#}
+                        {#</div>#}
+                        {#<div class="mdl-card__supporting-text">#}
+                            {#{{ photo ["description"] }}#}
+                        {#</div>#}
                     </div>
                 {% endfor %}
         </div>
     </div>
 
-    {{ include('layout/footer.twig') }}
+
 
 </main>
+{{ include('layout/footer.twig') }}
 </body>
 </html>
