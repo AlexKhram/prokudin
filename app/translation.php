@@ -18,11 +18,12 @@ $app['translator.domains'] = array(
     'messages' => array(
         'ru' => array(
             'siteName' => 'Каталог фотографий Прокудина-Горского',
-            'mainPage' => 'главная',
-            'mapPhoto' => 'карта',
-            'tags' => 'теги',
-            'about'=>'о сайте',
-            'listPhoto' => 'список фото',
+            'siteDesc' => 'первые в истории цветные фотографии',
+            'mainPage' => 'ГЛАВНАЯ',
+            'mapPhoto' => 'КАРТА',
+            'tags' => 'ТЕГИ',
+            'about'=>'О САЙТЕ',
+            'listPhoto' => 'СПИСОК ФОТО',
             'photoLocation' => 'Месторасположение фото',
             'listPhotosWithTag' => 'Список фотографий с тэгом',
             'notPhotoWithTag' => 'Нет фотографий с таким тэгом',
@@ -44,15 +45,17 @@ $app['translator.domains'] = array(
             'notCaptcha' => 'Каптча не пройдена',
             'photoNotFound'=>'Фото не найдено',
             'pageNotFound'=>'Страница не найдена',
+            'year'=> ' год',
 
         ),
         'en' => array(
             'siteName' => 'Prokudin-Gorskii Collection',
-            'mainPage' => 'main',
-            'mapPhoto' => 'map',
-            'tags' => 'tags',
-            'listPhoto' => 'list of photos',
-            'about'=>'about',
+            'siteDesc' => 'First colour photo in history',
+            'mainPage' => 'MAIN',
+            'mapPhoto' => 'MAP',
+            'tags' => 'TAGS',
+            'listPhoto' => 'LIST OF PHOTO',
+            'about'=>'ABOUT',
             'photoLocation' => 'Image location',
             'listPhotosWithTag' => 'List of photos with tag',
             'notPhotoWithTag' => 'Not photo with this tag',
@@ -74,6 +77,7 @@ $app['translator.domains'] = array(
             'notCaptcha' => 'Captcha test failed',
             'photoNotFound'=>'Photo not found',
             'pageNotFound'=>'Page not found',
+            'year'=> ' год',
 
             
             

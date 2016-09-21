@@ -35,6 +35,7 @@ $app['db.options'] = [
 
 ];
 $app['recaptchaSecret'] = isset($salt['recaptchaSecret']) ? $salt['recaptchaSecret'] : '-';
-$app['mainColour'] = 'mdl-color--amber-100';
-$app['accentColour'] = 'mdl-color--orange-200';
-$app['accentTextColour'] = 'mdl-color-text--orange-200';
+$app['mainColour'] = 'mdl-color--grey-200';
+$app['accentColour'] = 'mdl-color--indigo-300';
+$app['accentTextColour'] = 'mdl-color-text--indigo-500';
+$app['googleMapColour'] = '#e8eaf6';

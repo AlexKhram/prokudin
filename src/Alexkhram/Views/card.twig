@@ -22,10 +22,14 @@
                             <img class="center img_fullwidth" src="{{ card["path_hirez"] }}" alt=""/>
                         </div>
                         <div class="mdl-card__title">
-                            {{ card ["name"] }}
+                            {{ card ["name"]}}
+                            {% if card["year"]  %}
+                            <div class="mdl-layout-spacer"></div>
+                            {{ card["year"] }}{{ 'year'|trans }}
+                            {% endif %}
                         </div>
                         <div class="mdl-card__supporting-text">
-                            {{ card ["description"] }}
+                            {{ card ["description"]|raw  }}
                         </div>
 
                         {% if card['tags'] %}
@@ -56,7 +60,7 @@
                                             {
                                                 featureType: "all",
                                                 stylers: [
-                                                    {hue: '#FFA500'},
+                                                    {hue: '{{ app['googleMapColour'] }}'},
                                                     {saturation: 50}
 
                                                 ]
@@ -120,7 +124,7 @@
                                     <label class="mdl-textfield__label" for="comment">{{ 'comment'|trans }}</label>
                                 </div>
                                 <input type="hidden" name="idphoto" value="{{ card["id"] }}"/>
-                                <div class="g-recaptcha" data-sitekey="6LdOBQcUAAAAAPYSDj7XmFcR4AvfvksVaHCWilus"
+                                <div class="g-recaptcha" data-sitekey="6LfeSAcUAAAAAKnhvf1lO1IuF7bqpD5D6uIZkWuu"
                                      data-callback="enableBtn"></div>
                             </form>
                         </div>

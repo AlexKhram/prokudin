@@ -1,8 +1,19 @@
-<footer class=" mdl-mini-footer mdl-layout--large-screen-only {{ app['mainColour']  }}">
+<footer class=" mdl-mini-footer mdl-layout--large-screen-only {{ app['mainColour'] }}">
     <div class="mdl-mini-footer__left-section">
         <ul class="mdl-mini-footer__link-list">
-            <li><a href="{{ path('index') }}">{{ 'mainPage'|trans }}</a></li>
-            <li><a href="{{ path('about') }}">{{ 'about'|trans }}</a></li>
+            <li><a href="{{ path('index') }}">
+                    <button class="mdl-button mdl-js-button mdl-color-text--grey">
+                        {{ 'mainPage'|trans }}
+                    </button>
+                </a>
+            </li>
+            <li>
+                <a href="{{ path('about') }}">
+                    <button class="mdl-button mdl-js-button mdl-color-text--grey">
+                        {{ 'about'|trans }}
+                    </button>
+                </a>
+            </li>
         </ul>
     </div>
     <div class="mdl-mini-footer__right-section">

@@ -17,15 +17,15 @@
                                 {
                                     featureType: "all",
                                     stylers: [
-                                        {hue: '#FFA500'},
-                                        {saturation: 50}
+                                        {hue: '{{ app['googleMapColour'] }}'},
+                                        {saturation: 10}
 
                                     ]
                                 }, {
                                     featureType: "road.arterial",
                                     elementType: "geometry",
                                     stylers: [
-                                        {hue: "#FF8C00"},
+                                        {hue: "#e8eaf6"},
                                         {saturation: 100}
                                     ]
                                 }, {
@@ -58,10 +58,6 @@
                                     '</div>' +
                                     '<div class="mdl-card__title">' +
                                     '{{ photo ["name"] }}' +
-                                    '</div>' +
-                                    '<div class="mdl-card__supporting-text">' +
-                                    '{{ photo ["description"] }}' +
-                                    ' </div>' +
                                     '</div>';
                             var infowindow{{ count }} = new google.maps.InfoWindow({
                                 content: contentString{{ count }}
