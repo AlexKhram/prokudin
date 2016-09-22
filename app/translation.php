@@ -77,7 +77,7 @@ $app['translator.domains'] = array(
             'notCaptcha' => 'Captcha test failed',
             'photoNotFound'=>'Photo not found',
             'pageNotFound'=>'Page not found',
-            'year'=> ' год',
+            'year'=> ' year',
 
             
             
