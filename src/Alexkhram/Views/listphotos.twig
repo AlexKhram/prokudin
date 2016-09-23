@@ -9,21 +9,21 @@
 
     <div class=" content-grid mdl-grid">
     <div class="mdl-layout-spacer"></div>
-    <div class="mdl-cell mdl-cell--10-col mdl-cell--7-col-tablet mdl-cell--3-col-phone">
-
-            {% if cards %}
+    <div class="mdl-cell mdl-cell--10-col mdl-cell--7-col-tablet mdl-cell--3-col-phone" id="photos">
+              {% if cards %}
                 <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp fullwidth">
+
                     <thead>
                     <tr>
-                        <th class="mdl-data-table__cell--non-numeric full-width">{{ 'photo'|trans }}</th>
-                        <th>{{ 'views'|trans }}</th>
+                        <th class="mdl-data-table__cell--non-numeric sort" data-sort="name">{{ 'photo'|trans }}</th>
+                        <th class="sort" data-sort="view">{{ 'views'|trans }}</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="list">
                     {% set count = 0 %}
                     {% for card in cards %}
                     <tr>
-                        <td class="mdl-data-table__cell--non-numeric">
+                        <td class="mdl-data-table__cell--non-numeric name">
                             <a class="{{ app['accentTextColour'] }}" href="{{ path('photo', {name: card["name_search"]}) }}" id="tooltip{{ count }}">
                                 {{ card ["name"] }}
                             </a>
@@ -32,10 +32,10 @@
                             </span>
                             {% set count = count + 1 %}
                         </td>
-                        <td>{{ card ["views"] }}</td>
+                        <td class="view">{{ card ["views"] }}</td>
                     </tr>
-                    </tbody>
                     {% endfor %}
+                    </tbody>
                 </table>
             {% endif %}
 
@@ -44,9 +44,16 @@
 </div>
 
     </div>
-
-
 </main>
 {{ include('layout/footer.twig') }}
+
+<script src="/js/list.js"></script>
+<script>
+    var options = {
+        valueNames: [ 'name', 'view' ]
+    };
+
+    var userList = new List('photos', options);
+</script>
 </body>
 </html>
