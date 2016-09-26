@@ -7,7 +7,7 @@
 <main class="mdl-layout__content">
     <div class="page-content">
         <div class="content-grid mdl-grid">
-            <div class="content-grid mdl-grid">
+            <div itemscope itemtype="http://schema.org/Photograph" class="content-grid mdl-grid">
 
                 {% if card == false %}
                     <div class="mdl-card mdl-cell  mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-shadow--2dp">
@@ -17,19 +17,19 @@
                     </div>
 
                 {% else %}
-                    <div itemscope itemtype="http://schema.org/Movie" class="mdl-card card-witdth-900-centered mdl-cell  mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-shadow--2dp">
+                    <div class="mdl-card card-witdth-900-centered mdl-cell  mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-shadow--2dp">
                         <div class="mdl-card__media mdl-color--white">
                             <img itemprop="image" class="center img_fullwidth" src="{{ card["path_hirez"] }}" alt=""/>
                         </div>
                         <div class="mdl-card__title">
-                            <span itemprop="name">{{ card ["name"]}}</span>
-                            {% if card["year"]  %}
-                            <div class="mdl-layout-spacer"></div>
-                            <span itemprop="dateCreated">{{ card["year"] }}{{ 'year'|trans }}</span>
+                            <span itemprop="name">{{ card ["name"] }}</span>
+                            {% if card["year"] %}
+                                <div class="mdl-layout-spacer"></div>
+                                <span itemprop="dateCreated">{{ card["year"] }}{{ 'year'|trans }}</span>
                             {% endif %}
                         </div>
-                        <div class="mdl-card__supporting-text">
-                            {{ card ["description"]|raw  }}
+                        <div itemprop="description" class="mdl-card__supporting-text">
+                            {{ card ["description"]|raw }}
                         </div>
 
                         {% if card['tags'] %}
@@ -38,7 +38,7 @@
                                     <a href="{{ path('listbytag', {tagName: tag}) }}">
                         <span class="mdl-chip {{ app['accentColour'] }}  mdl-color-text--white">
 
-                            <span class="mdl-chip__text">{{ tag }}</span>
+                            <span itemprop="keywords" class="mdl-chip__text">{{ tag }}</span>
 
                         </span>
                                     </a>
@@ -106,6 +106,7 @@
                     <div class="mdl-card card-witdth-900-centered mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-shadow--2dp">
                         <div class="mdl-card__supporting-text">
                             <form id="comment" method="post" action="{{ path('photo', {name: card["name_search"]}) }}">
+
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                     <input class="mdl-textfield__input" type="text" id="username" name="username"
                                            pattern="[A-Z,a-z, ]*"/>
@@ -137,7 +138,8 @@
                     {% if comments %}
                         {% for comment in comments %}
                             <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone"></div>
-                            <div class="mdl-card card-witdth-900-centered mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-shadow--2dp">
+                            <div itemprop="comment"  itemscope itemtype="http://schema.org/Comment"
+                                 class="mdl-card card-witdth-900-centered mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-shadow--2dp">
                                 <div class="mdl-card__title">
                                     <img alt=""
                                          src="http://1.gravatar.com/avatar/{{ comment['hash'] }}?s=200&amp;d=mm&amp;r=g"
@@ -145,13 +147,16 @@
                                     <ul class="demo-list-two mdl-list">
                                         <li class="mdl-list__item mdl-list__item--two-line">
                                   <span class="mdl-list__item-primary-content">
-                                      <span>{{ comment["name"] }}</span>
-                                      <span class="mdl-list__item-sub-title">{{ comment["date"] }}</span>
+                                      <div itemprop="author" itemscope itemtype="http://schema.org/Person">
+                                        <span itemprop="name">{{ comment["name"] }}</span>
+                                      </div>
+                                      <span itemprop="dateCreated"
+                                            class="mdl-list__item-sub-title">{{ comment["date"] }}</span>
                                   </span>
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="mdl-card__supporting-text">
+                                <div itemprop="text" class="mdl-card__supporting-text">
                                     {{ comment["comment"] }}
                                 </div>
                             </div>

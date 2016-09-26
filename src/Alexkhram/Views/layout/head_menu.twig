@@ -5,13 +5,13 @@
             <!-- Title -->
             <span class="mdl-layout-title">{{ 'siteName'|trans }}</span>
             <div class="mdl-layout-spacer"></div>
-                <a href="{{ global.request.getPathInfo() }}?lang=ru">
+                <a hreflang="ru" href="{{ global.request.getPathInfo() }}?lang=ru">
                     <button class="mdl-button mdl-js-button {% if app['locale'] == 'ru' %} mdl-color-text--grey-600
                         {% else %}mdl-color-text--grey {% endif %}">
                         RU
                     </button>
                 </a>
-                <a href="{{ global.request.getPathInfo() }}?lang=en">
+                <a hreflang="en" href="{{ global.request.getPathInfo() }}?lang=en">
                     <button class="mdl-button mdl-js-button {% if app['locale'] == 'en' %} mdl-color-text--grey-600
                         {% else %}mdl-color-text--grey {% endif %}">
                         EN
@@ -47,7 +47,7 @@
             {#</nav>#}
         {#</div>#}
     </header>
-    <div class="mdl-layout__drawer">
+    <div itemscope itemtype="http://schema.org/SiteNavigationElement" class="mdl-layout__drawer">
         <div class="center">
             <a href="{{ global.request.getPathInfo() }}?lang=ru">
                 <button class="mdl-button mdl-js-button {% if app['locale'] == 'ru' %} mdl-color-text--grey-600
@@ -64,12 +64,12 @@
             </a>
         </div>
         <nav class="mdl-navigation">
-            <a class="mdl-navigation__link" href="{{ path('index') }}">{{ 'mainPage'|trans }}</a>
-            <a class="mdl-navigation__link" href="{{ path('map') }}">{{ 'mapPhoto'|trans }}</a>
-            <a class="mdl-navigation__link" href="{{ path('tags') }}">{{ 'tags'|trans }}</a>
-            <a class="mdl-navigation__link" href="{{ path('listphotos') }}">{{ 'listPhoto'|trans }}</a>
+            <a itemprop="url" class="mdl-navigation__link" href="{{ path('index') }}">{{ 'mainPage'|trans }}</a>
+            <a itemprop="url" class="mdl-navigation__link" href="{{ path('map') }}">{{ 'mapPhoto'|trans }}</a>
+            <a itemprop="url" class="mdl-navigation__link" href="{{ path('tags') }}">{{ 'tags'|trans }}</a>
+            <a itemprop="url" class="mdl-navigation__link" href="{{ path('listphotos') }}">{{ 'listPhoto'|trans }}</a>
         </nav>
         <span class="mdl-navigation">
-            <a class="mdl-navigation__link" href="{{ path('about') }} ">{{ 'about'|trans }}</a>
+            <a itemprop="url" class="mdl-navigation__link" href="{{ path('about') }} ">{{ 'about'|trans }}</a>
             </span>
     </div>

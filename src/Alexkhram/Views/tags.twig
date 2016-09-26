@@ -12,16 +12,18 @@
                 <div class="mdl-card__title">
                     {{ 'listOfTags'|trans }}
                 </div>
-                <div class="mdl-card__supporting-text">
+                <div itemscope itemtype="http://schema.org/ItemList" class="mdl-card__supporting-text">
 
                     {% if tags %}
                         {% for tag in tags %}
-                            <span class="mdl-chip mdl-chip--contact">
-                                <a href="{{ path('listbytag', {tagName: tag['tag']}) }}">
-                                    <span class="mdl-chip__contact {{ app['accentColour'] }} mdl-color-text--white">{{ tag['count'] }}</span>
-                                    <span class="mdl-chip__text {{ app['accentTextColour'] }}"> {{ tag['tag'] }}</span>
+                            <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" class="mdl-chip mdl-chip--contact">
+                                <span class="mdl-chip__contact {{ app['accentColour'] }} mdl-color-text--white">{{ tag['count'] }}</span>
+                                <a itemprop="url" href="{{ path('listbytag', {tagName: tag['tag']}) }}">
+                                    <span itemprop="name" class="mdl-chip__text {{ app['accentTextColour'] }}"> {{ tag['tag'] }}</span>
+                                    </a>
 
-                                </a>
+
+
                             </span>
                         {% endfor %}
                     {% endif %}

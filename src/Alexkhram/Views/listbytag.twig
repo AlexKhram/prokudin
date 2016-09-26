@@ -11,20 +11,20 @@
                 <div class="mdl-card__title">
                     {{ 'listPhotosWithTag'|trans }} : {{ tag }}
                 </div>
-                <div class="mdl-card__supporting-text">
+                <div itemscope itemtype="http://schema.org/ItemList" class="mdl-card__supporting-text">
 
                     {% if cards %}
                         <ul class=" mdl-list">
                             {% set count = 0 %}
                             {% for card in cards %}
-                                <li class="mdl-list__item">
+                                <li itemprop="itemListElement" itemscope itemtype="http://schema.org/Photograph" class="mdl-list__item">
                                  <span class="mdl-list__item-primary-content">
-                                     <a href="{{ path('photo', {name: card["name_search"]}) }}" id="tooltip{{ count }}"> <i
+                                     <a itemprop="url" href="{{ path('photo', {name: card["name_search"]}) }}" id="tooltip{{ count }}"> <i
                                                  class="material-icons mdl-list__item-icon {{ app['accentTextColour'] }}">image</i></a>
                                     <a href="{{ path('photo', {name: card["name_search"]}) }}"
-                                       id="tooltip{{ count  + 1 }}" class="{{ app['accentTextColour'] }}"> {{ card ["name"] }}</a>
+                                       id="tooltip{{ count  + 1 }}" class="{{ app['accentTextColour'] }}"> <span itemprop="name description">{{ card ["name"] }}</span></a>
                                      <span for="tooltip{{ count }}" class="mdl-tooltip {{ app['mainColour'] }} mdl-tooltip--right">
-                            <img src="{{ card["path_image"] }}" alt="" class="alignnone size-full wp-image-8295 img-preview"/>
+                            <img itemprop="image" src="{{ card["path_image"] }}" alt="" class="alignnone size-full wp-image-8295 img-preview"/>
                                      </span>
                                      {% set count = count + 2 %}
                                  </span>

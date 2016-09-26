@@ -10,21 +10,21 @@
 
             {% if card == false %}
             <div class="mdl-card mdl-cell  mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-shadow--2dp">
-                <div class="mdl-card__supporting-text">
+                <div  class="mdl-card__supporting-text">
                     {{ 'pageNotFound'|trans }}
                 </div>
             </div>
 
             {% else %}
-            <div class="mdl-card mdl-cell  mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-shadow--2dp">
+            <div itemscope itemtype="http://schema.org/Article"  class="mdl-card mdl-cell  mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-shadow--2dp">
                 <div class="mdl-card__title">
-                    <img class="about-image" src="{{ card["path_hirez"] }}" alt=""/>
+                    <img itemprop="image" class="about-image" src="{{ card["path_hirez"] }}" alt=""/>
                 </div>
-                <div class="mdl-card__title">
-                    {{ card ["name"] }}
+                <div itemprop="name" class="mdl-card__title">
+                     {{ card ["name"] }}
                 </div>
-                <div class="mdl-card__supporting-text">
-                    {{ card ["description"]|raw }}
+                <div itemprop="articleBody" class="mdl-card__supporting-text">
+                     {{ card ["description"]|raw }}
                 </div>
             </div>
             {% endif %}

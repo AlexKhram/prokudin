@@ -6,12 +6,15 @@
 
 <main class="mdl-layout__content">
     <div class="page-content">
-        <div class="mdl-grid">
+        <div itemscope itemtype="http://schema.org/ItemList" class="mdl-grid">
 
                 {% for photo in content %}
-                    <div class="mdl-card card-max-witdth-600 mdl-cell  mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-shadow--2dp">
+                    <div itemprop="itemListElement" itemscope itemtype="http://schema.org/Photograph"
+                         class="mdl-card card-max-witdth-600 mdl-cell  mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-shadow--2dp">
                         <div class="mdl-card__media mdl-color--white">
-                            <a href="{{ path('photo', {name: photo["name_search"]}) }}"><img class="img_fullwidth center"
+                            <meta itemprop="name description" content="{{  photo ["name"] }}" />
+                            <meta itemprop="image" content="{{ absolute_url(photo["path_image"]) }}" />
+                            <a itemprop="url" href="{{ path('photo', {name: photo["name_search"]}) }}"><img  class="img_fullwidth center"
                                                                                              src="{{ photo["path_image"] }}"
                                                                                              alt=""/></a>
                         </div>

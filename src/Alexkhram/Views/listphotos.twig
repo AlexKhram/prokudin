@@ -8,11 +8,10 @@
     <div class="page-content">
 
     <div class=" content-grid mdl-grid">
-    <div class="mdl-layout-spacer"></div>
-    <div class="mdl-cell mdl-cell--10-col mdl-cell--7-col-tablet mdl-cell--3-col-phone" id="photos">
+        <div class="mdl-layout-spacer"></div>
+        <div class="mdl-cell mdl-cell--10-col mdl-cell--7-col-tablet mdl-cell--3-col-phone" id="photos">
               {% if cards %}
-                <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp fullwidth">
-
+                <table itemscope itemtype="http://schema.org/ItemList" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp fullwidth">
                     <thead>
                     <tr>
                         <th class="mdl-data-table__cell--non-numeric sort" data-sort="name">{{ 'photo'|trans }}</th>
@@ -23,12 +22,12 @@
                     {% set count = 0 %}
                     {% for card in cards %}
                     <tr>
-                        <td class="mdl-data-table__cell--non-numeric name">
-                            <a class="{{ app['accentTextColour'] }}" href="{{ path('photo', {name: card["name_search"]}) }}" id="tooltip{{ count }}">
-                                {{ card ["name"] }}
+                        <td itemprop="itemListElement" itemscope itemtype="http://schema.org/Photograph"  class="mdl-data-table__cell--non-numeric name">
+                            <a  class="{{ app['accentTextColour'] }}" href="{{ path('photo', {name: card["name_search"]}) }}" id="tooltip{{ count }}">
+                                <span itemprop="name description">{{ card ["name"] }}</span>
                             </a>
                             <span for="tooltip{{ count }}" class="mdl-tooltip {{ app['mainColour']  }}">
-                                <img src="{{ card["path_image"] }}" alt="" class="alignnone size-full wp-image-8295 img-preview" />
+                                <img itemprop="image" src="{{ card["path_image"] }}" alt="" class="alignnone size-full wp-image-8295 img-preview" />
                             </span>
                             {% set count = count + 1 %}
                         </td>
@@ -38,10 +37,9 @@
                     </tbody>
                 </table>
             {% endif %}
-
+        </div>
+        <div class="mdl-layout-spacer"></div>
     </div>
-    <div class="mdl-layout-spacer"></div>
-</div>
 
     </div>
 </main>
