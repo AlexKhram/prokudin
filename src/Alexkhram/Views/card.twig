@@ -17,15 +17,15 @@
                     </div>
 
                 {% else %}
-                    <div class="mdl-card card-witdth-900-centered mdl-cell  mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-shadow--2dp">
+                    <div itemscope itemtype="http://schema.org/Movie" class="mdl-card card-witdth-900-centered mdl-cell  mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-shadow--2dp">
                         <div class="mdl-card__media mdl-color--white">
-                            <img class="center img_fullwidth" src="{{ card["path_hirez"] }}" alt=""/>
+                            <img itemprop="image" class="center img_fullwidth" src="{{ card["path_hirez"] }}" alt=""/>
                         </div>
                         <div class="mdl-card__title">
-                            {{ card ["name"]}}
+                            <span itemprop="name">{{ card ["name"]}}</span>
                             {% if card["year"]  %}
                             <div class="mdl-layout-spacer"></div>
-                            {{ card["year"] }}{{ 'year'|trans }}
+                            <span itemprop="dateCreated">{{ card["year"] }}{{ 'year'|trans }}</span>
                             {% endif %}
                         </div>
                         <div class="mdl-card__supporting-text">
