@@ -65,7 +65,7 @@
 
                             var marker{{ count }} = new google.maps.Marker({
                                 map: map,
-                                position: { {{ photo["geo"] }} },
+                                position: { lat: {{ photo["latitude"] }}, lng: {{ photo["longitude"] }} },
                                 title: "{{ photo["name"] }}"
                             });
                             marker{{ count }}.addListener('click', function () {
