@@ -40,3 +40,33 @@
     ga('send', 'pageview');
 
 </script>
+<!-- MDL snackbar message-->
+<div class="mdl-snackbar mdl-js-snackbar">
+    <div class="mdl-snackbar__text"></div>
+    <button type="button" class="mdl-snackbar__action"></button>
+</div>
+{% if message is defined and message is not empty%}
+    <script>
+        var notification = document.querySelector('.mdl-js-snackbar');
+
+        r(function () {
+            notification.MaterialSnackbar.showSnackbar({
+                message: {% if message['success'] is defined %}
+                        '{{ message['success']|trans }}',
+                {% elseif message['error'] is defined %}
+                '{% for error in message['error'] %}
+                {{ error|trans }}{% if not loop.last %}, {% endif %}{% if loop.last %}',{% endif %}
+                        {% endfor %}
+                        {% endif %}
+                actionHandler: function () {
+                notification.style.opacity = 0;
+            },
+            actionText: 'X',
+                    timeout: 25000
+        });
+        });
+        function r(f) {
+            /in/.test(document.readyState) ? setTimeout('r(' + f + ')', 9) : f()
+        }
+    </script>
+{% endif %}

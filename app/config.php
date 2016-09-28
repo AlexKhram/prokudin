@@ -20,7 +20,7 @@
 $app['debug'] = true;
 
 $app['locale'] = 'ru'; //default language
-$app['RUSpeaking'] = ['RU', 'UA' . 'BY', '-', 'Invalid IP address.']; // Russian speaking country
+$app['RUSpeaking'] = ['RU', 'UA' , 'BY', '-', 'Invalid IP address.']; // Russian speaking country
 //$app['RUSpeaking'] = ['RU', 'UA'. 'BY']; // Russian speaking country
 
 $app['pathPhoto'] = 'photos/';

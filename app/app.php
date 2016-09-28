@@ -34,17 +34,18 @@ $app->before(function () use ($app) {
         $app['session']->set('lang', $_GET['lang']);
     } elseif ($app['session']->get('lang')) {
         $app['locale'] = $app['session']->get('lang');
-    } elseif (isset($_SERVER['SERVER_NAME'])) {
+    } elseif (isset($_SERVER['REMOTE_ADDR'])) {
         $db = new \IP2Location\Database(
             dirname(__DIR__) . '/vendor/ip2location/ip2location-php/databases/IP2LOCATION-LITE-DB1.BIN',
             \IP2Location\Database::FILE_IO
         );
-        $records = $db->lookup($_SERVER['SERVER_NAME'], \IP2Location\Database::ALL);
+        $records = $db->lookup($_SERVER['REMOTE_ADDR'], \IP2Location\Database::ALL);
         if (in_array($records['countryCode'], $app['RUSpeaking'])) {
             $app['locale'] = 'ru';
         } else {
             $app['locale'] = 'en';
         }
+
     }
 
     $app['translator']->setLocale($app['locale']);
