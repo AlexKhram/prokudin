@@ -48,8 +48,12 @@
                     <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone"></div>
 
                     {% if card["latitude"] is defined and card["longitude"] is defined %}
-                        <div class="mdl-card card-witdth-900-centered mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-shadow--2dp">
-                            <div class="mdl-card__media mdl-color--white">
+                        <div itemprop="contentLocation" itemscope itemtype="http://schema.org/Place"
+                             class="mdl-card card-witdth-900-centered mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-shadow--2dp">
+                            <div itemprop="geo" itemscope itemtype="http://schema.org/GeoCoordinates"
+                                 class="mdl-card__media mdl-color--white">
+                                <meta itemprop="latitude" content="{{ card["latitude"] }}" />
+                                <meta itemprop="longitude" content="{{ card["longitude"] }}" />
                                 <div id="map"></div>
                                 <script>
                                     function initMap() {
@@ -144,13 +148,16 @@
                                          class="circle-avatar">
                                     <ul class="demo-list-two mdl-list">
                                         <li class="mdl-list__item mdl-list__item--two-line">
-                                  <span class="mdl-list__item-primary-content">
-                                      <div itemprop="author" itemscope itemtype="http://schema.org/Person">
-                                        <span itemprop="name">{{ comment["name"] }}</span>
-                                      </div>
-                                      <span itemprop="dateCreated"
-                                            class="mdl-list__item-sub-title">{{ comment["date"] }}</span>
-                                  </span>
+                                            <span class="mdl-list__item-primary-content">
+                                                <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+                                                    <span itemprop="name">
+                                                        {{ comment["name"] }}
+                                                    </span>
+                                                </span>
+                                                <span itemprop="dateCreated" class="mdl-list__item-sub-title">
+                                                    {{ comment["date"] }}
+                                                </span>
+                                            </span>
                                         </li>
                                     </ul>
                                 </div>
