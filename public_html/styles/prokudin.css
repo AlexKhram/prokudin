@@ -8,7 +8,11 @@
  */
 
 
-
+@media (max-width:1025px)  {
+    .hide-mobile{
+        display:none;
+    }
+}
 a {
     text-decoration: none;
 }
@@ -105,4 +109,15 @@ a {
     position: relative;
     top:-4px;
     right:-5px;
+}
+.fotorama__html div,
+.fotorama__html a {
+    display: block !important;
+    margin: 0 auto !important;
+    height: 100% !important;
+    width: 70%;
+    /* Transparent links are not clickable in IE,
+       but non-existent background fixes this.
+      (Put an empty 1×1 image here to avoid
+       errors in console.) */
 }

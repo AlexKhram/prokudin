@@ -55,7 +55,6 @@
                     RU
                 </button>
             </a>
-
             <a href="{{ global.request.getPathInfo() }}?lang=en">
                 <button class="mdl-button mdl-js-button {% if app['locale'] == 'en' %} mdl-color-text--grey-600
                         {% else %}mdl-color-text--grey {% endif %}">
@@ -64,12 +63,12 @@
             </a>
         </div>
         <nav class="mdl-navigation">
-            <a itemprop="url" class="mdl-navigation__link" href="{{ path('index') }}"><h4>{{ 'mainPage'|trans }}</h4></a>
-            <a itemprop="url" class="mdl-navigation__link" href="{{ path('map') }}"><h4>{{ 'mapPhoto'|trans }}</h4></a>
-            <a itemprop="url" class="mdl-navigation__link" href="{{ path('tags') }}"><h4>{{ 'tags'|trans }}</h4></a>
-            <a itemprop="url" class="mdl-navigation__link" href="{{ path('listphotos') }}"><h4>{{ 'listPhoto'|trans }}</h4></a>
+            <a itemprop="url" class="mdl-navigation__link" href="{{ path('index') }}"><h5>{{ 'mainPage'|trans }}</h5></a>
+            <a itemprop="url" class="mdl-navigation__link" href="{{ path('map') }}"><h5>{{ 'mapPhoto'|trans }}</h5></a>
+            <a itemprop="url" class="mdl-navigation__link" href="{{ path('tags') }}"><h5>{{ 'tags'|trans }}</h5></a>
+            <a itemprop="url" class="mdl-navigation__link" href="{{ path('listphotos') }}"><h5>{{ 'listPhoto'|trans }}</h5></a>
         </nav>
         <span class="mdl-navigation">
-            <a itemprop="url" class="mdl-navigation__link" href="{{ path('about') }} "><h4>{{ 'about'|trans }}</h4></a>
+            <a itemprop="url" class="mdl-navigation__link" href="{{ path('about') }} "><h5>{{ 'about'|trans }}</h5></a>
             </span>
     </div>

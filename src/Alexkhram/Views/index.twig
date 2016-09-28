@@ -1,37 +1,88 @@
 {{ include('layout/head.twig') }}
 
-<body>
+<body xmlns="http://www.w3.org/1999/html">
 
 {{ include('layout/head_menu.twig') }}
+
+{# Style needs to work link in mobiles #}
+<style>
+    .fotorama__html div,
+    .fotorama__html a {
+        display: block;
+        margin: 0 auto;
+        height: 100%;
+        width: 70%;
+        /* Transparent links are not clickable in IE,
+           but non-existent background fixes this.
+          (Put an empty 1×1 image here to avoid
+           errors in console.) */
+    }
+</style>
 
 <main class="mdl-layout__content">
     <div class="page-content">
         <div itemscope itemtype="http://schema.org/ItemList" class="mdl-grid">
+            <div class="mdl-card card-witdth-900-centered mdl-cell  mdl-cell--11-col mdl-cell--7-col-tablet mdl-cell--4-col-phone mdl-shadow--2dp">
+                <div class="mdl-card__media mdl-color--white fotorama"
+                     data-nav="thumbs" data-fit="cover" data-loop="true" data-autoplay="10000"
+                     data-keyboard="true" data-swipe="true" data-click="true" data-arrows="always"
+                     data-width="100%" data-height="80%">
 
-                {% for photo in content %}
-                    <div itemprop="itemListElement" itemscope itemtype="http://schema.org/Photograph"
-                         class="mdl-card card-max-witdth-600 mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-shadow--2dp">
-                        <div class="mdl-card__media mdl-color--white">
+                    {% for photo in content %}
+                        <div itemprop="itemListElement" itemscope itemtype="http://schema.org/Photograph"
+                        data-img="{{ absolute_url(photo["path_hirez"]) }}"
+                        data-thumb="{{ absolute_url(photo["path_image"]) }}"
+                        data-caption="{{  photo["name"] }}">
                             <meta itemprop="name description" content="{{  photo ["name"] }}" />
                             <meta itemprop="image" content="{{ absolute_url(photo["path_image"]) }}" />
-                            <a itemprop="url" href="{{ path('photo', {name: photo["name_search"]}) }}"><img  class="img_fullwidth center"
-                                                                                             src="{{ photo["path_image"] }}"
-                                                                                             alt=""/></a>
+                            <a itemprop="url" href="{{ path('photo', {name: photo["name_search"]}) }}"></a>
+                            {% if photo["latitude"] is defined and photo["longitude"] is defined%}
+                                <div itemprop="contentLocation" itemscope itemtype="http://schema.org/Place">
+                                    <div itemprop="geo" itemscope itemtype="http://schema.org/GeoCoordinates">
+                                        <meta itemprop="latitude" content="{{ photo["latitude"] }}" />
+                                        <meta itemprop="longitude" content="{{ photo["longitude"] }}" />
+                                    </div>
+                                </div>
+                            {% endif %}
                         </div>
-                        {#<div class="mdl-card__title">#}
-                            {#{{ photo ["name"] }}#}
-                        {#</div>#}
-                        {#<div class="mdl-card__supporting-text">#}
-                            {#{{ photo ["description"] }}#}
-                        {#</div>#}
-                    </div>
-                {% endfor %}
+                    {% endfor %}
+
+                </div>
+            </div>
         </div>
     </div>
-
-
-
 </main>
+
 {{ include('layout/footer.twig') }}
+
 </body>
+<!-- fotorama.css  -->
+<link href="/styles/fotorama.css" rel="stylesheet"> <!-- 3 KB -->
+<!-- 1. Link to jQuery (1.8 or later), -->
+<script src="/js/jquery.min.js"></script> <!-- 33 KB -->
+<!-- fotorama.js. -->
+<script src="/js/fotorama.js"></script> <!-- 16 KB -->
+
+<!-- fotorama size chnger-->
+<script>
+    $(document).ready(function(){
+        if(window.innerWidth < 1025) {
+            $('.fotorama').fotorama({
+                height: '97%'
+            });
+        }
+    });
+    $(window).resize(function(){
+        if(window.innerWidth < 1025) {
+            $('.fotorama').fotorama({
+                height: '97%'
+            });
+        } else {
+            $('.fotorama').fotorama({
+                height: '80%'
+            });
+        }
+    })
+</script>
+
 </html>

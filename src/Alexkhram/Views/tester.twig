@@ -1,61 +1,37 @@
 {{ include('layout/head.twig') }}
 
-<body xmlns="http://www.w3.org/1999/html">
-<style>
-    .fotorama__html div,
-    .fotorama__html a {
-        display: block;
-        height: 100%;
-        /* Transparent links are not clickable in IE,
-           but non-existent background fixes this.
-          (Put an empty 1×1 image here to avoid
-           errors in console.) */
-        background: url(_.gif);
-    }
-</style>
-{{ include('layout/head_menu.twig') }}
-<!-- 1. Link to jQuery (1.8 or later), -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> <!-- 33 KB -->
+<body>
 
-<!-- fotorama.css & fotorama.js. -->
-<link href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet"> <!-- 3 KB -->
-<script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script> <!-- 16 KB -->
+{{ include('layout/head_menu.twig') }}
 
 <main class="mdl-layout__content">
     <div class="page-content">
         <div itemscope itemtype="http://schema.org/ItemList" class="mdl-grid">
 
-            <div class="mdl-card card-witdth-900-centered mdl-cell  mdl-cell--11-col mdl-cell--7-col-tablet mdl-cell--4-col-phone mdl-shadow--2dp">
-                <div class="mdl-card__media mdl-color--white fotorama" data-nav="thumbs" data-click="true"
-                     data-fit="cover" data-loop="true" data-autoplay="10000" data-keyboard="true"
-                     data-width="100%" data-height="80%">
-
-                    {% for photo in content %}
-                        <div itemprop="itemListElement" itemscope itemtype="http://schema.org/Photograph"
-                        data-img="{{ absolute_url(photo["path_hirez"]) }}"
-                        data-thumb="{{ absolute_url(photo["path_image"]) }}"
-                        data-caption="{{  photo ["name"] }}">
+                {% for photo in content %}
+                    <div itemprop="itemListElement" itemscope itemtype="http://schema.org/Photograph"
+                         class="mdl-card card-max-witdth-600 mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-shadow--2dp">
+                        <div class="mdl-card__media mdl-color--white">
                             <meta itemprop="name description" content="{{  photo ["name"] }}" />
                             <meta itemprop="image" content="{{ absolute_url(photo["path_image"]) }}" />
-                            <a itemprop="url" href="{{ path('photo', {name: photo["name_search"]}) }}"></a>
+                            <a itemprop="url" href="{{ path('photo', {name: photo["name_search"]}) }}"><img  class="img_fullwidth center"
+                                                                                             src="{{ photo["path_image"] }}"
+                                                                                             alt=""/></a>
                         </div>
-                    {% endfor %}
-
-                </div>
-
-            </div>
+                        {#<div class="mdl-card__title">#}
+                            {#{{ photo ["name"] }}#}
+                        {#</div>#}
+                        {#<div class="mdl-card__supporting-text">#}
+                            {#{{ photo ["description"] }}#}
+                        {#</div>#}
+                    </div>
+                {% endfor %}
         </div>
     </div>
+
 
 
 </main>
 {{ include('layout/footer.twig') }}
 </body>
-<script>
-    $(document).ready(function(){
-        $(".fotorama__nav-wrap").addClass("mdl-layout--large-screen-only");
-    })
-
-</script>
-
 </html>

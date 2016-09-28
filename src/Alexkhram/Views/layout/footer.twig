@@ -1,4 +1,12 @@
-<footer class=" mdl-mini-footer mdl-layout--large-screen-only {{ app['mainColour'] }}">
+{# I know, it`s ugly, but I dont know how resolve problem show before hide #}
+<style>
+    @media (max-width:1025px)  {
+        .hide-mobile{
+            display:none;
+        }
+    }
+</style>
+<footer class="hide-mobile mdl-mini-footer mdl-layout--large-screen-only {{ app['mainColour'] }}">
     <div class="mdl-mini-footer__left-section">
         <ul class="mdl-mini-footer__link-list">
             <li><a href="{{ path('index') }}">
@@ -18,16 +26,15 @@
     </div>
     <div class="mdl-mini-footer__right-section">
         <ul class="mdl-mini-footer__link-list">
-
             <li>
                 <a href="https://github.com/AlexKhram/prokudin"><img alt="" src="/images/github.png"></a>
             </li>
-
         </ul>
-
     </div>
 </footer>
 
+<!-- MDL JS -->
+<script defer src="/js/material.min.js"></script>
 
 <!-- Google analytics -->
 <script>
@@ -40,6 +47,7 @@
     ga('send', 'pageview');
 
 </script>
+
 <!-- MDL snackbar message-->
 <div class="mdl-snackbar mdl-js-snackbar">
     <div class="mdl-snackbar__text"></div>

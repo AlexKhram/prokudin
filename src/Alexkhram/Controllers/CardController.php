@@ -32,16 +32,18 @@ class CardController
             'content' => $cards,
             'locale' => $app['locale'],
         ));
+        
     }
 
     public function index(Request $request, Application $app)
     {
-        $cards = $app['photoModel']->findAllActiveLimited();
+        $cards = $app['photoModel']->findAllActive();
 
         return $app['twig']->render('index.twig', array(
             'content' => $cards,
             'locale' => $app['locale'],
         ));
+        
     }
 
     public function viewPhoto(Request $request, Application $app, $name)
