@@ -17,7 +17,7 @@
  * Time: 14:19
  */
 
-$app['debug'] = true;
+$app['debug'] = false;
 
 $app['locale'] = 'ru'; //default language
 $app['RUSpeaking'] = ['RU', 'UA' , 'BY', '-', 'Invalid IP address.']; // Russian speaking country

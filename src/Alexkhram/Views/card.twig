@@ -10,7 +10,7 @@
             <div itemscope itemtype="http://schema.org/Photograph" class="content-grid mdl-grid">
 
                 {% if card == false %}
-                    <div class="mdl-card mdl-cell  mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-shadow--2dp">
+                    <div class="mdl-card mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-shadow--2dp">
                         <div class="mdl-card__supporting-text">
                             {{ 'photoNotFound'|trans }}
                         </div>
@@ -22,7 +22,7 @@
                             <img itemprop="image" class="center img_fullwidth" src="{{ card["path_hirez"] }}" alt=""/>
                         </div>
                         <div class="mdl-card__title">
-                            <span itemprop="name">{{ card ["name"] }}</span>
+                            <span itemprop="name">{{ card["name"] }}</span>
                             {% if card["year"] %}
                                 <div class="mdl-layout-spacer"></div>
                                 <span itemprop="dateCreated">{{ card["year"] }}{{ 'year'|trans }}</span>

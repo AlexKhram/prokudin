@@ -118,7 +118,8 @@ class CardController
         ));
     }
 
-    
-
-
+    public function notFound(Request $request, Application $app)
+    {
+        return $app['twig']->render('404.twig');
+    }
 }

@@ -61,14 +61,15 @@ $app['recaptcha'] = new \ReCaptcha\ReCaptcha($app['recaptchaSecret']);
 
 
 // Error handles
-//    $app->error(function (\Exception $e, Request $request, $code) {
-//        switch ($code) {
-//            case 404:
-//                $message = 'The requested page could not be found.';
-//                break;
-//            default:
-//                $message = 'We are sorry, but something went terribly wrong.';
-//        }
-//
-//        return new Response($message);
-//    });
+    $app->error(function (\Exception $e, Request $request, $code) use ($app) {
+        switch ($code) {
+            case 404:
+                return $app->redirect('/404');
+                $message = 'The requested page could not be found.';
+                break;
+            default:
+                $message = 'We are sorry, but something went  wrong.';
+        }
+
+        return new Response($message);
+    });

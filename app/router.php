@@ -22,4 +22,5 @@ $app->get('/tags', 'Alexkhram\\Controllers\\CardController::tags')->bind('tags')
 $app->get('/listbytag/{tagName}', 'Alexkhram\\Controllers\\CardController::listByTag')->bind('listbytag');
 $app->get('/listphotos', 'Alexkhram\\Controllers\\CardController::listPhotos')->bind('listphotos');
 $app->get('/about', 'Alexkhram\\Controllers\\CardController::about')->bind('about');
+$app->get('/404', 'Alexkhram\\Controllers\\CardController::notFound')->bind('404');
 $app->get('/tester', 'Alexkhram\\Controllers\\CardController::tester')->bind('tester');
