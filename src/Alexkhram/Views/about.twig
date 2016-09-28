@@ -9,14 +9,14 @@
         <div class="content-grid mdl-grid">
 
             {% if card == false %}
-            <div class="mdl-card mdl-cell  mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-shadow--2dp">
+            <div class="mdl-card card-witdth-900-centered mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-shadow--2dp">
                 <div  class="mdl-card__supporting-text">
                     {{ 'pageNotFound'|trans }}
                 </div>
             </div>
 
             {% else %}
-            <div itemscope itemtype="http://schema.org/Article"  class="mdl-card mdl-cell  mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-shadow--2dp">
+            <div itemscope itemtype="http://schema.org/Article"  class="mdl-card card-witdth-900-centered mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-shadow--2dp">
                 <div class="mdl-card__title">
                     <img itemprop="image" class="about-image" src="{{ card["path_hirez"] }}" alt=""/>
                 </div>
@@ -31,9 +31,6 @@
 
         </div>
     </div>
-
-
-
 </main>
 {{ include('layout/footer.twig') }}
 </body>

@@ -7,7 +7,7 @@
 <main class="mdl-layout__content">
     <div class="page-content">
         <div class="content-grid mdl-grid">
-            <div class="mdl-card mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-shadow--2dp">
+            <div class="mdl-card card-witdth-900-centered mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-shadow--2dp">
                 <div class="mdl-card__media mdl-color--white">
                     <div itemscope itemtype="http://schema.org/Map" id="map-primary"></div>
                     <script>
@@ -73,7 +73,6 @@
                             });
                             {% set count = count + 1 %}
                             {% endfor %}
-
                         }
                     </script>
                 </div>
@@ -82,16 +81,16 @@
                 </div>
             </div>
         </div>
-
     </div>
-
-
 </main>
+
 {{ include('layout/footer.twig') }}
 </body>
+
 <!-- Google map api -->
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDzg2kplesRfCCdrBsvNjbldgH-sj-1Qg&callback=initMap&language={{ app['locale'] }}"
 ></script>
+
 </html>
 

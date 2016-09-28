@@ -36,11 +36,9 @@
                             <div class="mdl-card__actions mdl-card--border">
                                 {% for tag in card['tags'] %}
                                     <a href="{{ path('listbytag', {tagName: tag}) }}">
-                        <span class="mdl-chip {{ app['accentColour'] }}  mdl-color-text--white">
-
-                            <span itemprop="keywords" class="mdl-chip__text">{{ tag }}</span>
-
-                        </span>
+                                         <span class="mdl-chip {{ app['accentColour'] }}  mdl-color-text--white">
+                                            <span itemprop="keywords" class="mdl-chip__text">{{ tag }}</span>
+                                         </span>
                                     </a>
                                 {% endfor %}
                             </div>
@@ -49,7 +47,7 @@
                     </div>
                     <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone"></div>
 
-                    {% if card["latitude"] is defined and card["longitude"] is defined%}
+                    {% if card["latitude"] is defined and card["longitude"] is defined %}
                         <div class="mdl-card card-witdth-900-centered mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-shadow--2dp">
                             <div class="mdl-card__media mdl-color--white">
                                 <div id="map"></div>
@@ -79,7 +77,7 @@
                                                 ]
                                             }
                                         ];
-                                        var myLatLng = { lat: {{ card["latitude"] }}, lng: {{ card["longitude"] }} };
+                                        var myLatLng = {lat: {{ card["latitude"] }}, lng: {{ card["longitude"] }} };
                                         // Create a map object and specify the DOM element for display.
                                         var map = new google.maps.Map(document.getElementById('map'), {
                                             center: myLatLng,
@@ -138,7 +136,7 @@
                     {% if comments %}
                         {% for comment in comments %}
                             <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone"></div>
-                            <div itemprop="comment"  itemscope itemtype="http://schema.org/Comment"
+                            <div itemprop="comment" itemscope itemtype="http://schema.org/Comment"
                                  class="mdl-card card-witdth-900-centered mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-shadow--2dp">
                                 <div class="mdl-card__title">
                                     <img alt=""
@@ -167,12 +165,13 @@
 
             </div>
         </div>
-
     </div>
-
 </main>
+
 {{ include('layout/footer.twig') }}
+
 </body>
+<!-- ReCaptcha enable button-->
 <script>
     function enableBtn() {
         document.getElementById("buttonSubmit").disabled = false;
@@ -184,5 +183,6 @@
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDzg2kplesRfCCdrBsvNjbldgH-sj-1Qg&callback=initMap&language={{ app['locale'] }}"
 ></script>
+
 </html>
 

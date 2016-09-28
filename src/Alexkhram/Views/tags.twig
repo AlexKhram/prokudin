@@ -6,9 +6,8 @@
 
 <main class="mdl-layout__content">
     <div class="page-content">
-
         <div class="content-grid mdl-grid">
-            <div class="mdl-card mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-shadow--2dp">
+            <div class="mdl-card card-witdth-900-centered mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-shadow--2dp">
                 <div class="mdl-card__title">
                     {{ 'listOfTags'|trans }}
                 </div>
@@ -20,10 +19,7 @@
                                 <span class="mdl-chip__contact {{ app['accentColour'] }} mdl-color-text--white">{{ tag['count'] }}</span>
                                 <a itemprop="url" href="{{ path('listbytag', {tagName: tag['tag']}) }}">
                                     <span itemprop="name" class="mdl-chip__text {{ app['accentTextColour'] }}"> {{ tag['tag'] }}</span>
-                                    </a>
-
-
-
+                                </a>
                             </span>
                         {% endfor %}
                     {% endif %}
@@ -32,10 +28,9 @@
             </div>
         </div>
     </div>
-
-
-
 </main>
+
 {{ include('layout/footer.twig') }}
+
 </body>
 </html>
