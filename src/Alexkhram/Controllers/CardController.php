@@ -24,6 +24,16 @@ use Symfony\Component\HttpFoundation\Request;
 
 class CardController
 {
+    public function tester(Request $request, Application $app)
+    {
+        $cards = $app['photoModel']->findAllActiveLimited();
+
+        return $app['twig']->render('tester.twig', array(
+            'content' => $cards,
+            'locale' => $app['locale'],
+        ));
+    }
+
     public function index(Request $request, Application $app)
     {
         $cards = $app['photoModel']->findAllActiveLimited();
