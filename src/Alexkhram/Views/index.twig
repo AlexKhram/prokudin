@@ -1,5 +1,5 @@
 {{ include('layout/head.twig') }}
-
+</head>
 <body xmlns="http://www.w3.org/1999/html">
 
 {{ include('layout/head_menu.twig') }}
@@ -35,7 +35,7 @@
                         data-caption="{{  photo["name"] }}">
                             <meta itemprop="name description" content="{{  photo ["name"] }}" />
                             <meta itemprop="image" content="{{ absolute_url(photo["path_image"]) }}" />
-                            <a itemprop="url" href="{{ path('photo', {name: photo["name_search"]}) }}"></a>
+                            <a itemprop="url" href="{{ absolute_url(path('photo', {name: photo["name_search"]})) }}"></a>
                             {% if photo["latitude"] is defined and photo["longitude"] is defined%}
                                 <div itemprop="contentLocation" itemscope itemtype="http://schema.org/Place">
                                     <div itemprop="geo" itemscope itemtype="http://schema.org/GeoCoordinates">

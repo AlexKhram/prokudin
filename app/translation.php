@@ -18,7 +18,7 @@ $app['translator.domains'] = array(
     'messages' => array(
         'ru' => array(
             'siteName' => 'Каталог фотографий Прокудина-Горского',
-            'siteDesc' => 'первые в истории цветные фотографии',
+            'siteDesc' => 'одна из первых в истории колекция цветных фотографий',
             'mainPage' => 'ГЛАВНАЯ',
             'mapPhoto' => 'КАРТА',
             'tags' => 'ТЕГИ',
@@ -46,11 +46,12 @@ $app['translator.domains'] = array(
             'photoNotFound'=>'Фото не найдено',
             'pageNotFound'=>'Страница не найдена',
             'year'=> ' год',
+            'shareOn'=>'поделиться в ',
 
         ),
         'en' => array(
             'siteName' => 'Prokudin-Gorskii Collection',
-            'siteDesc' => 'First colour photo in history',
+            'siteDesc' => 'one of the first in the history collection of color photographs',
             'mainPage' => 'MAIN',
             'mapPhoto' => 'MAP',
             'tags' => 'TAGS',
@@ -78,9 +79,7 @@ $app['translator.domains'] = array(
             'photoNotFound'=>'Photo not found',
             'pageNotFound'=>'Page not found',
             'year'=> ' year',
-
-            
-            
+            'shareOn'=>'share on ',
 
         ),
     ),
