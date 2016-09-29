@@ -1,23 +1,23 @@
 {{ include('layout/head.twig') }}
-<meta property="og:url"                content="{{ absolute_url(path('photo', {name: card["name_search"]})) }}" />
-<meta property="og:type"               content="article" />
-<meta property="og:title"              content="{{ card["name"] }}" />
-<meta property="og:headline"           content="{{ 'siteDesc'|trans }}" />
-<meta property="og:description"        content="{{ 'siteDesc'|trans }}" />
-<meta property="og:image"              content="{{ absolute_url(card["path_hirez"]) }}" />
-<meta property="og:image:width"        content="400" />
-<meta property="og:image:height"       content="300" />
-<meta property="og:locale"             content="ru_RU" />
-<meta property="og:locale:alternate"   content="en_US" />
-<meta property="og:site_name"          content="progorsky.com" />
-<meta property="og:latitude"           content="{{ card["latitude"] }}">
-<meta property="og:longitude"          content="{{ card["longitude"] }}">
-<meta name="twitter:card"              content="photo" />
-<meta name="twitter:site"              content="progorsky.com" />
-<meta name = "twitter:creator"         content ="@AKhramenkov">
-<meta name="twitter:title"             content="{{ card["name"] }}" />
-<meta name="twitter:image"             content="{{ absolute_url(card["path_hirez"]) }}" />
-<meta name="twitter:url"               content="{{ absolute_url(path('photo', {name: card["name_search"]})) }}" />
+<meta property="og:url" content="{{ absolute_url(path('photo', {name: card["name_search"]})) }}"/>
+<meta property="og:type" content="article"/>
+<meta property="og:title" content="{{ card["name"] }}"/>
+<meta property="og:headline" content="{{ 'siteDesc'|trans }}"/>
+<meta property="og:description" content="{{ 'siteDesc'|trans }}"/>
+<meta property="og:image" content="{{ absolute_url(card["path_hirez"]) }}"/>
+<meta property="og:image:width" content="400"/>
+<meta property="og:image:height" content="300"/>
+<meta property="og:locale" content="ru_RU"/>
+<meta property="og:locale:alternate" content="en_US"/>
+<meta property="og:site_name" content="progorsky.com"/>
+<meta property="og:latitude" content="{{ card["latitude"] }}">
+<meta property="og:longitude" content="{{ card["longitude"] }}">
+<meta name="twitter:card" content="photo"/>
+<meta name="twitter:site" content="progorsky.com"/>
+<meta name="twitter:creator" content="@AKhramenkov">
+<meta name="twitter:title" content="{{ card["name"] }}"/>
+<meta name="twitter:image" content="{{ absolute_url(card["path_hirez"]) }}"/>
+<meta name="twitter:url" content="{{ absolute_url(path('photo', {name: card["name_search"]})) }}"/>
 </head>
 
 <body>
@@ -30,177 +30,205 @@
             <div itemscope itemtype="http://schema.org/Photograph" class="content-grid mdl-grid">
 
                 {% if card == false %}
-                    <div class="mdl-card mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-shadow--2dp">
-                        <div class="mdl-card__supporting-text">
-                            {{ 'photoNotFound'|trans }}
-                        </div>
+                <div class="mdl-card mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-shadow--2dp">
+                    <div class="mdl-card__supporting-text">
+                        {{ 'photoNotFound'|trans }}
                     </div>
+                </div>
 
                 {% else %}
-                    <div class="mdl-card card-witdth-900-centered mdl-cell  mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-shadow--2dp">
-                        <div class="mdl-card__media mdl-color--white">
-                            <img itemprop="image" class="center img_fullwidth" src="{{ absolute_url(card["path_hirez"]) }}" alt=""/>
-                        </div>
-                        <div class="mdl-card__title">
-                            <span itemprop="name">{{ card["name"] }}</span>
-                            <meta itemprop="headline" content="{{ 'siteDesc'|trans }}" />
-                            {% if card["year"] %}
-                                <div class="mdl-layout-spacer"></div>
-                                <span itemprop="dateCreated">{{ card["year"] }}{{ 'year'|trans }}</span>
-                            {% endif %}
-                        </div>
-                        <div itemprop="description" class="mdl-card__supporting-text">
-                            {{ card ["description"]|raw }}
-                        </div>
+                <div class="mdl-card card-witdth-900-centered mdl-cell  mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-shadow--2dp">
+                    <div class="mdl-card__media mdl-color--white">
+                        <img itemprop="image" class="center img_fullwidth" src="{{ absolute_url(card["path_hirez"]) }}"
+                             alt=""/>
+                    </div>
+                    <div class="mdl-card__title">
+                        <span itemprop="name">{{ card["name"] }}</span>
+                        <meta itemprop="headline" content="{{ 'siteDesc'|trans }}"/>
+                        {% if card["year"] %}
+                            <div class="mdl-layout-spacer"></div>
+                            <span itemprop="dateCreated">{{ card["year"] }}{{ 'year'|trans }}</span>
+                        {% endif %}
+                    </div>
+                    <div itemprop="description" class="mdl-card__supporting-text">
+                        {{ card ["description"]|raw }}
+                    </div>
 
-                        {% if card['tags'] %}
-                            <div class="mdl-card__actions mdl-card--border">
-                                {% for tag in card['tags'] %}
-                                    <a href="{{ path('listbytag', {tagName: tag}) }}">
+                    {% if card['tags'] %}
+                        <div class="mdl-card__actions mdl-card--border">
+                            {% for tag in card['tags'] %}
+                                <a href="{{ path('listbytag', {tagName: tag}) }}">
                                          <span class="mdl-chip {{ app['accentColour'] }}  mdl-color-text--white">
                                             <span itemprop="keywords" class="mdl-chip__text">{{ tag }}</span>
                                          </span>
-                                    </a>
-                                {% endfor %}
-                            </div>
-                        {% endif %}
-
-                        <div class="mdl-card__menu">
-                            <button id="demo-menu-top-right" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-                                <i class="material-icons">share</i>
-                            </button>
-                            <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
-                                data-mdl-for="demo-menu-top-right">
-                                <li class="mdl-menu__item">
-                                    <a href="https://vk.com/share.php?url={{ absolute_url(path('photo', {name: card["name_search"]})) }}" title="{{ 'shareOn'|trans }}VK" target="_blank"
-                                       class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btn-vk">
-                                        <span class="fa fa-vk"></span>
-                                    </a>
-                                </li>
-                                <li class="mdl-menu__item">
-                                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ absolute_url(path('photo', {name: card["name_search"]})) }}" title="{{ 'shareOn'|trans }}Facebook" target="_blank"
-                                       class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btn-facebook">
-                                        <span class="fa fa-facebook"></span>
-                                    </a>
-                                </li>
-                                <li class="mdl-menu__item">
-                                    <a href="http://twitter.com/home?status={{ absolute_url(path('photo', {name: card["name_search"]})) }}" title="{{ 'shareOn'|trans }}Twitter" target="_blank"
-                                       class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect  btn-twitter">
-                                        <span class="fa fa-twitter"></span>
-                                    </a>
-                                </li>
-                                <li class="mdl-menu__item">
-                                    <a href="https://plus.google.com/share?url={{ absolute_url(path('photo', {name: card["name_search"]})) }}" title="{{ 'shareOn'|trans }}Google+" target="_blank"
-                                       class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btn-google">
-                                        <span class="fa fa-google"></span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone"></div>
-
-                    {% if card["latitude"] is defined and card["longitude"] is defined %}
-                        <div itemprop="contentLocation" itemscope itemtype="http://schema.org/Place"
-                             class="mdl-card card-witdth-900-centered mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-shadow--2dp">
-                            <div itemprop="geo" itemscope itemtype="http://schema.org/GeoCoordinates"
-                                 class="mdl-card__media mdl-color--white">
-                                <meta itemprop="latitude" content="{{ card["latitude"] }}" />
-                                <meta itemprop="longitude" content="{{ card["longitude"] }}" />
-                                <div id="map"></div>
-                                <script>
-                                    function initMap() {
-                                        // Specify features and elements to define styles.
-                                        var styleArray = [
-                                            {
-                                                featureType: "all",
-                                                stylers: [
-                                                    {hue: '{{ app['googleMapColour'] }}'},
-                                                    {saturation: 50}
-
-                                                ]
-                                            }, {
-                                                featureType: "road.arterial",
-                                                elementType: "geometry",
-                                                stylers: [
-                                                    {hue: "#FF8C00"},
-                                                    {saturation: 100}
-                                                ]
-                                            }, {
-                                                featureType: "poi.business",
-                                                elementType: "labels",
-                                                stylers: [
-                                                    {visibility: "off"}
-                                                ]
-                                            }
-                                        ];
-                                        var myLatLng = {lat: {{ card["latitude"] }}, lng: {{ card["longitude"] }} };
-                                        // Create a map object and specify the DOM element for display.
-                                        var map = new google.maps.Map(document.getElementById('map'), {
-                                            center: myLatLng,
-                                            scrollwheel: false,
-                                            // Apply the map style array to the map.
-                                            styles: styleArray,
-                                            zoom: 7,
-                                            disableDefaultUI: true
-                                        });
-                                        var marker = new google.maps.Marker({
-                                            map: map,
-                                            position: myLatLng
-                                        });
-                                    }
-                                </script>
-                            </div>
-                            <div class="mdl-card__title">
-                                {{ 'photoLocation'|trans }}
-                            </div>
+                                </a>
+                            {% endfor %}
                         </div>
                     {% endif %}
 
-                    <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone"></div>
-                    <div class="mdl-card card-witdth-900-centered mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-shadow--2dp">
-                        <div class="mdl-card__supporting-text">
-                            <form id="comment" method="post" action="{{ path('photo', {name: card["name_search"]}) }}">
+                    <div class="mdl-card__actions mdl-card--border mdl-layout--small-screen-only">
+                    <a href="https://vk.com/share.php?url={{ absolute_url(path('photo', {name: card["name_search"]})) }}"
+                       title="{{ 'shareOn'|trans }}VK" target="_blank"
+                       class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btn-social-icon btn-vk">
+                        <span class="fa fa-vk"></span>
+                    </a>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ absolute_url(path('photo', {name: card["name_search"]})) }}"
+                       title="{{ 'shareOn'|trans }}Facebook" target="_blank"
+                       class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btn-social-icon btn-facebook">
+                        <span class="fa fa-facebook"></span>
+                    </a>
+                    <a href="http://twitter.com/home?status={{ absolute_url(path('photo', {name: card["name_search"]})) }}"
+                       title="{{ 'shareOn'|trans }}Twitter" target="_blank"
+                       class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btn-social-icon btn-twitter">
+                        <span class="fa fa-twitter"></span>
+                    </a>
+                    <a href="https://plus.google.com/share?url={{ absolute_url(path('photo', {name: card["name_search"]})) }}"
+                       title="{{ 'shareOn'|trans }}Google+" target="_blank"
+                       class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btn-social-icon btn-google">
+                        <span class="fa fa-google"></span>
+                    </a>
+                </div>
+                <div class="mdl-card__menu">
+                    <button id="demo-menu-top-right"
+                            class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                        <i class="material-icons">share</i>
+                    </button>
+                    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+                        data-mdl-for="demo-menu-top-right">
+                        <li class="mdl-menu__item">
+                            <a href="https://vk.com/share.php?url={{ absolute_url(path('photo', {name: card["name_search"]})) }}"
+                               title="{{ 'shareOn'|trans }}VK" target="_blank"
+                               class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btn-vk">
+                                <span class="fa fa-vk"></span>
+                            </a>
+                        </li>
+                        <li class="mdl-menu__item">
+                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ absolute_url(path('photo', {name: card["name_search"]})) }}"
+                               title="{{ 'shareOn'|trans }}Facebook" target="_blank"
+                               class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btn-facebook">
+                                <span class="fa fa-facebook"></span>
+                            </a>
+                        </li>
+                        <li class="mdl-menu__item">
+                            <a href="http://twitter.com/home?status={{ absolute_url(path('photo', {name: card["name_search"]})) }}"
+                               title="{{ 'shareOn'|trans }}Twitter" target="_blank"
+                               class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect  btn-twitter">
+                                <span class="fa fa-twitter"></span>
+                            </a>
+                        </li>
+                        <li class="mdl-menu__item">
+                            <a href="https://plus.google.com/share?url={{ absolute_url(path('photo', {name: card["name_search"]})) }}"
+                               title="{{ 'shareOn'|trans }}Google+" target="_blank"
+                               class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btn-google">
+                                <span class="fa fa-google"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone"></div>
 
-                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                    <input class="mdl-textfield__input" type="text" id="username" name="username"
-                                           pattern="[A-Z,a-z, ]*"/>
-                                    <label class="mdl-textfield__label" for="username">{{ 'name'|trans }}</label>
-                                    <span class="mdl-textfield__error">{{ 'lettersSpaces'|trans }}</span>
-                                </div>
-                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                    <input class="mdl-textfield__input" type="email" id="email" name="email"/>
-                                    <label class="mdl-textfield__label"
-                                           for="email">{{ 'emailNotPublished'|trans }}</label>
-                                    <span class="mdl-textfield__error">{{ 'realEmail'|trans }}</span>
-                                </div>
-                                <div class="mdl-textfield mdl-js-textfield fullwidth">
+            {% if card["latitude"] is defined and card["longitude"] is defined %}
+                <div itemprop="contentLocation" itemscope itemtype="http://schema.org/Place"
+                     class="mdl-card card-witdth-900-centered mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-shadow--2dp">
+                    <div itemprop="geo" itemscope itemtype="http://schema.org/GeoCoordinates"
+                         class="mdl-card__media mdl-color--white">
+                        <meta itemprop="latitude" content="{{ card["latitude"] }}"/>
+                        <meta itemprop="longitude" content="{{ card["longitude"] }}"/>
+                        <div id="map"></div>
+                        <script>
+                            function initMap() {
+                                // Specify features and elements to define styles.
+                                var styleArray = [
+                                    {
+                                        featureType: "all",
+                                        stylers: [
+                                            {hue: '{{ app['googleMapColour'] }}'},
+                                            {saturation: 50}
+
+                                        ]
+                                    }, {
+                                        featureType: "road.arterial",
+                                        elementType: "geometry",
+                                        stylers: [
+                                            {hue: "#FF8C00"},
+                                            {saturation: 100}
+                                        ]
+                                    }, {
+                                        featureType: "poi.business",
+                                        elementType: "labels",
+                                        stylers: [
+                                            {visibility: "off"}
+                                        ]
+                                    }
+                                ];
+                                var myLatLng = {lat: {{ card["latitude"] }}, lng: {{ card["longitude"] }} };
+                                // Create a map object and specify the DOM element for display.
+                                var map = new google.maps.Map(document.getElementById('map'), {
+                                    center: myLatLng,
+                                    scrollwheel: false,
+                                    // Apply the map style array to the map.
+                                    styles: styleArray,
+                                    zoom: 7,
+                                    disableDefaultUI: true
+                                });
+                                var marker = new google.maps.Marker({
+                                    map: map,
+                                    position: myLatLng
+                                });
+                            }
+                        </script>
+                    </div>
+                    <div class="mdl-card__title">
+                        {{ 'photoLocation'|trans }}
+                    </div>
+                </div>
+            {% endif %}
+
+            <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone"></div>
+            <div class="mdl-card card-witdth-900-centered mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-shadow--2dp">
+                <div class="mdl-card__supporting-text">
+                    <form id="comment" method="post" action="{{ path('photo', {name: card["name_search"]}) }}">
+
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="text" id="username" name="username"
+                                   pattern="[A-Z,a-z, ]*"/>
+                            <label class="mdl-textfield__label" for="username">{{ 'name'|trans }}</label>
+                            <span class="mdl-textfield__error">{{ 'lettersSpaces'|trans }}</span>
+                        </div>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="email" id="email" name="email"/>
+                            <label class="mdl-textfield__label"
+                                   for="email">{{ 'emailNotPublished'|trans }}</label>
+                            <span class="mdl-textfield__error">{{ 'realEmail'|trans }}</span>
+                        </div>
+                        <div class="mdl-textfield mdl-js-textfield fullwidth">
                                 <textarea class="mdl-textfield__input" type="text" rows="3" maxrows="3" id="comment"
                                           name="comment"></textarea>
-                                    <label class="mdl-textfield__label" for="comment">{{ 'comment'|trans }}</label>
-                                </div>
-                                <input type="hidden" name="idphoto" value="{{ card["id"] }}"/>
-                                <div class="g-recaptcha" data-sitekey="6LfeSAcUAAAAAKnhvf1lO1IuF7bqpD5D6uIZkWuu"
-                                     data-callback="enableBtn"></div>
-                            </form>
+                            <label class="mdl-textfield__label" for="comment">{{ 'comment'|trans }}</label>
                         </div>
-                        <div class="mdl-card__actions ">
-                            <button type="submit" form="comment" id="buttonSubmit" disabled
-                                    class="mdl-button mdl-button--colored  mdl-js-button mdl-js-ripple-effect">{{ 'sendComment'|trans }}</button>
-                        </div>
-                    </div>
+                        <input type="hidden" name="idphoto" value="{{ card["id"] }}"/>
+                        <div class="g-recaptcha" data-sitekey="6LfeSAcUAAAAAKnhvf1lO1IuF7bqpD5D6uIZkWuu"
+                             data-callback="enableBtn"></div>
+                    </form>
+                </div>
+                <div class="mdl-card__actions ">
+                    <button type="submit" form="comment" id="buttonSubmit" disabled
+                            class="mdl-button mdl-button--colored  mdl-js-button mdl-js-ripple-effect">{{ 'sendComment'|trans }}</button>
+                </div>
+            </div>
 
-                    {% if comments %}
-                        {% for comment in comments %}
-                            <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone"></div>
-                            <div itemprop="comment" itemscope itemtype="http://schema.org/Comment"
-                                 class="mdl-card card-witdth-900-centered mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-shadow--2dp">
-                                <div class="mdl-card__title">
-                                    <img alt=""
-                                         src="http://1.gravatar.com/avatar/{{ comment['hash'] }}?s=200&amp;d=mm&amp;r=g"
-                                         class="circle-avatar">
-                                    <ul class="demo-list-two mdl-list">
-                                        <li class="mdl-list__item mdl-list__item--two-line">
+            {% if comments %}
+                {% for comment in comments %}
+                    <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone"></div>
+                    <div itemprop="comment" itemscope itemtype="http://schema.org/Comment"
+                         class="mdl-card card-witdth-900-centered mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-shadow--2dp">
+                        <div class="mdl-card__title">
+                            <img alt=""
+                                 src="http://1.gravatar.com/avatar/{{ comment['hash'] }}?s=200&amp;d=mm&amp;r=g"
+                                 class="circle-avatar">
+                            <ul class="demo-list-two mdl-list">
+                                <li class="mdl-list__item mdl-list__item--two-line">
                                             <span class="mdl-list__item-primary-content">
                                                 <span itemprop="author" itemscope itemtype="http://schema.org/Person">
                                                     <span itemprop="name">
@@ -211,20 +239,20 @@
                                                     {{ comment["date"] }}
                                                 </span>
                                             </span>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div itemprop="text" class="mdl-card__supporting-text">
-                                    {{ comment["comment"] }}
-                                </div>
-                            </div>
-                        {% endfor %}
-                    {% endif %}
+                                </li>
+                            </ul>
+                        </div>
+                        <div itemprop="text" class="mdl-card__supporting-text">
+                            {{ comment["comment"] }}
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
 
-                {% endif %}
+            {% endif %}
 
-            </div>
         </div>
+    </div>
     </div>
 </main>
 
@@ -232,7 +260,7 @@
 
 </body>
 <!-- social buttons -->
-<link rel="stylesheet" href="/styles/bootstrap-social.css" />
+<link rel="stylesheet" href="/styles/bootstrap-social.css"/>
 <link rel="stylesheet" href="/styles/font-awesome.min.css">
 <!-- ReCaptcha enable button-->
 <script>

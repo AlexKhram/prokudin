@@ -1,5 +1,5 @@
 {{ include('layout/head.twig') }}
-<link rel="stylesheet" href="/styles/bootstrap-social.css" />
+<link rel="stylesheet" href="/styles/bootstrap-social.css"/>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
@@ -10,59 +10,83 @@
     <div class="page-content">
         <div itemscope itemtype="http://schema.org/ItemList" class="mdl-grid">
 
-                {% for photo in content %}
-                    <div itemprop="itemListElement" itemscope itemtype="http://schema.org/Photograph"
-                         class="mdl-card card-max-witdth-600 mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-shadow--2dp">
-                        <div class="mdl-card__media mdl-color--white">
-                            <meta itemprop="name description" content="{{  photo ["name"] }}" />
-                            <meta itemprop="image" content="{{ absolute_url(photo["path_image"]) }}" />
-                            <a itemprop="url" href="{{ path('photo', {name: photo["name_search"]}) }}"><img  class="img_fullwidth center"
-                                                                                             src="{{ photo["path_image"] }}"
-                                                                                             alt=""/></a>
-                        </div>
-                        <div class="mdl-card__menu">
-                            <button id="demo-menu-top-right" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-                                <i class="material-icons">share</i>
-                            </button>
-                            <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
-                                data-mdl-for="demo-menu-top-right">
-                                <li class="mdl-menu__item">
-                                    <a href="https://vk.com/share.php?url={{ absolute_url(path('photo', {name: photo["name_search"]})) }}" title="{{ 'shareOn'|trans }}VK" target="_blank"
-                                       class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btn-vk">
-                                        <span class="fa fa-vk"></span>
-                                    </a>
-                                </li>
-                                <li class="mdl-menu__item">
-                                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ absolute_url(path('photo', {name: photo["name_search"]})) }}" title="{{ 'shareOn'|trans }}Facebook" target="_blank"
-                                       class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btn-facebook">
-                                        <span class="fa fa-facebook"></span>
-                                    </a>
-                                </li>
-                                <li class="mdl-menu__item">
-                                    <a href="http://twitter.com/home?status={{ absolute_url(path('photo', {name: photo["name_search"]})) }}" title="{{ 'shareOn'|trans }}Twitter" target="_blank"
-                                       class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect  btn-twitter">
-                                        <span class="fa fa-twitter"></span>
-                                    </a>
-                                </li>
-                                <li class="mdl-menu__item">
-                                    <a href="https://plus.google.com/share?url={{ absolute_url(path('photo', {name: photo["name_search"]})) }}" title="{{ 'shareOn'|trans }}Google+" target="_blank"
-                                       class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btn-google">
-                                        <span class="fa fa-google"></span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        {#<div class="mdl-card__title">#}
-                            {#{{ photo ["name"] }}#}
-                        {#</div>#}
-                        {#<div class="mdl-card__supporting-text">#}
-                            {#{{ photo ["description"] }}#}
-                        {#</div>#}
+            {% for photo in content %}
+                <div itemprop="itemListElement" itemscope itemtype="http://schema.org/Photograph"
+                     class="mdl-card card-max-witdth-600 mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-shadow--2dp">
+                    <div class="mdl-card__media mdl-color--white">
+                        <meta itemprop="name description" content="{{ photo ["name"] }}"/>
+                        <meta itemprop="image" content="{{ absolute_url(photo["path_image"]) }}"/>
+                        <a itemprop="url" href="{{ path('photo', {name: photo["name_search"]}) }}"><img
+                                    class="img_fullwidth center"
+                                    src="{{ photo["path_image"] }}"
+                                    alt=""/></a>
                     </div>
-                {% endfor %}
+                    <div class="mdl-card__actions mdl-layout--small-screen-only">
+                        <a href="https://vk.com/share.php?url=" title="{{ 'shareOn'|trans }}VK" target="_blank"
+                           class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btn-social-icon btn-vk">
+                            <span class="fa fa-vk"></span>
+                        </a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=" title="{{ 'shareOn'|trans }}Facebook" target="_blank"
+                           class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btn-social-icon btn-facebook">
+                            <span class="fa fa-facebook"></span>
+                        </a>
+                        <a href="http://twitter.com/home?status=" title="{{ 'shareOn'|trans }}Twitter" target="_blank"
+                           class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btn-social-icon btn-twitter">
+                            <span class="fa fa-twitter"></span>
+                        </a>
+                        <a href="https://plus.google.com/share?url=" title="{{ 'shareOn'|trans }}Google+" target="_blank"
+                           class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btn-social-icon btn-google">
+                            <span class="fa fa-google"></span>
+                        </a>
+                    </div>
+
+                    <div class="mdl-card__menu">
+                        <button id="demo-menu-top-right"
+                                class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                            <i class="material-icons">share</i>
+                        </button>
+                        <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+                            data-mdl-for="demo-menu-top-right">
+                            <li class="mdl-menu__item">
+                                <a href="https://vk.com/share.php?url={{ absolute_url(path('photo', {name: photo["name_search"]})) }}"
+                                   title="{{ 'shareOn'|trans }}VK" target="_blank"
+                                   class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btn-vk">
+                                    <span class="fa fa-vk"></span>
+                                </a>
+                            </li>
+                            <li class="mdl-menu__item">
+                                <a href="https://www.facebook.com/sharer/sharer.php?u={{ absolute_url(path('photo', {name: photo["name_search"]})) }}"
+                                   title="{{ 'shareOn'|trans }}Facebook" target="_blank"
+                                   class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btn-facebook">
+                                    <span class="fa fa-facebook"></span>
+                                </a>
+                            </li>
+                            <li class="mdl-menu__item">
+                                <a href="http://twitter.com/home?status={{ absolute_url(path('photo', {name: photo["name_search"]})) }}"
+                                   title="{{ 'shareOn'|trans }}Twitter" target="_blank"
+                                   class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect  btn-twitter">
+                                    <span class="fa fa-twitter"></span>
+                                </a>
+                            </li>
+                            <li class="mdl-menu__item">
+                                <a href="https://plus.google.com/share?url={{ absolute_url(path('photo', {name: photo["name_search"]})) }}"
+                                   title="{{ 'shareOn'|trans }}Google+" target="_blank"
+                                   class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btn-google">
+                                    <span class="fa fa-google"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    {#<div class="mdl-card__title">#}
+                    {#{{ photo ["name"] }}#}
+                    {#</div>#}
+                    {#<div class="mdl-card__supporting-text">#}
+                    {#{{ photo ["description"] }}#}
+                    {#</div>#}
+                </div>
+            {% endfor %}
         </div>
     </div>
-
 
 
 </main>
