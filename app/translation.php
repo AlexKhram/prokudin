@@ -18,7 +18,7 @@ $app['translator.domains'] = array(
     'messages' => array(
         'ru' => array(
             'siteName' => 'Каталог фотографий Прокудина-Горского',
-            'siteDesc' => 'одна из первых в истории колекция цветных фотографий',
+            'siteDesc' => 'Одна из первых в истории колекция цветных фотографий',
             'mainPage' => 'ГЛАВНАЯ',
             'mapPhoto' => 'КАРТА',
             'tags' => 'ТЕГИ',
@@ -47,11 +47,17 @@ $app['translator.domains'] = array(
             'pageNotFound'=>'Страница не найдена',
             'year'=> ' год',
             'shareOn'=>'поделиться в ',
+            'indexTags' => 'Прокудин-Горский, фотографии, каталог, Первые фотографии',
+            'cardTags' => 'Прокудин-Горский, фотография, Первые фотографии',
+            'mapTags' => 'карта фотографий, Прокудин-Горский, фотография, Первые фотографии',
+            'tagsTags' => 'список тэгов, тэги, Прокудин-Горский, фотография, Первые фотографии',
+            'listTags' => 'список фотографий, Прокудин-Горский, фотография, Первые фотографии',
+            'aboutTags' => 'о сайте, progorsky.com, AlexKhram, Алексей Храменков, Прокудин-Горский',
 
         ),
         'en' => array(
             'siteName' => 'Prokudin-Gorskii Collection',
-            'siteDesc' => 'one of the first in the history collection of color photographs',
+            'siteDesc' => 'One of the first in the history collection of color photographs',
             'mainPage' => 'MAIN',
             'mapPhoto' => 'MAP',
             'tags' => 'TAGS',
@@ -80,10 +86,13 @@ $app['translator.domains'] = array(
             'pageNotFound'=>'Page not found',
             'year'=> ' year',
             'shareOn'=>'share on ',
+            'indexTags' => 'Prokudin-Gorsky, photo, photo album, first photos',
+            'cardTags' => 'Prokudin-Gorsky, photo, first photos',
+            'mapTags' => 'map of photo, Prokudin-Gorsky, photo, first photos',
+            'tagsTags' => 'list of tags, tags, Prokudin-Gorsky, photo, first photos',
+            'listTags' => 'list of photos, Prokudin-Gorsky, photo, first photos',
+            'aboutTags' => 'about, progorsky.com, AlexKhram, Oleksii Khramenkov, Prokudin-Gorsky',
 
         ),
     ),
 );
-//var_dump($app->trans('Hello World'));
-//var_dump($app['translator']->trans('siteName'));die();
-//{{ 'photoLocation'|trans }}
