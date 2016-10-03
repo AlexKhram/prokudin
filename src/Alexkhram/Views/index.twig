@@ -60,16 +60,15 @@
                             <meta itemprop="image" content="{{ absolute_url(photo["path_image"]) }}" />
                             <a itemprop="url" href="{{ absolute_url(path('photo', {name: photo["name_search"]})) }}"></a>
                             {% if photo["latitude"] is defined and photo["longitude"] is defined%}
-                                <div itemprop="contentLocation" itemscope itemtype="http://schema.org/Place">
-                                    <div itemprop="geo" itemscope itemtype="http://schema.org/GeoCoordinates">
-                                        <meta itemprop="latitude" content="{{ photo["latitude"] }}" />
-                                        <meta itemprop="longitude" content="{{ photo["longitude"] }}" />
-                                    </div>
+                            <div itemprop="contentLocation" itemscope itemtype="http://schema.org/Place">
+                                <div itemprop="geo" itemscope itemtype="http://schema.org/GeoCoordinates">
+                                     <meta itemprop="latitude" content="{{ photo["latitude"] }}" />
+                                     <meta itemprop="longitude" content="{{ photo["longitude"] }}" />
                                 </div>
+                            </div>
                             {% endif %}
                         </div>
                     {% endfor %}
-
                 </div>
             </div>
         </div>
@@ -79,12 +78,14 @@
 {{ include('layout/footer.twig') }}
 
 </body>
+
 <!-- fotorama.css  -->
-<link href="/styles/fotorama.css" rel="stylesheet"> <!-- 3 KB -->
+<link href="/styles/fotorama.css" rel="stylesheet">
+
 <!-- 1. Link to jQuery (1.8 or later), -->
-<script src="/js/jquery.min.js"></script> <!-- 33 KB -->
+<script src="/js/jquery.min.js"></script>
 <!-- fotorama.js. -->
-<script src="/js/fotorama.js"></script> <!-- 16 KB -->
+<script src="/js/fotorama.js"></script>
 
 <!-- fotorama size chnger-->
 <script>
@@ -107,5 +108,4 @@
         }
     })
 </script>
-
 </html>
